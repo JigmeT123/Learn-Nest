@@ -4,10 +4,17 @@ import { CreateAuthCredentialsDto } from './auth-crediantials.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService:AuthService){}
+  constructor(private readonly authService: AuthService) {}
 
-    @Post('/signup')
-    signup(@Body(ValidationPipe) authCredentialsDto:CreateAuthCredentialsDto):Promise<void>{
-        return this.authService.signUp(authCredentialsDto);
-    }
+  @Post('/signup')
+  signup(
+    @Body(ValidationPipe) authCredentialsDto: CreateAuthCredentialsDto,
+  ): Promise<void> {
+    return this.authService.signUp(authCredentialsDto);
+  }
+
+  @Post('/signin')
+  signIn(@Body(ValidationPipe) credentailsDto: CreateAuthCredentialsDto) {
+    return this.authService.singIn(credentailsDto);
+  }
 }
